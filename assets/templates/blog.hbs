@@ -1,0 +1,9 @@
+{{#if done}}
+    <input class="toggle" type="checkbox" checked>
+{{else}}
+    <input class="toggle" type="checkbox">
+{{/if}}
+
+<label>{{ title }}</label>
+<button class="destroy"></button>
+<input class="edit" value="{{ title }}">
