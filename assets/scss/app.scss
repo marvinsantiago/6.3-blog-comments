@@ -4,6 +4,9 @@
 @import 'neat';
 @import 'border-box';
 
+#target {
+    @include outer-container;
+}
 .new-blog {
     display: none;
 }
