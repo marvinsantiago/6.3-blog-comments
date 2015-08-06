@@ -42,9 +42,9 @@ var BlogView = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
   },
 
-  events: {
+  // events: {
 
-  },
+  // },
 
   render: function() {
     var html = this.template(this.model.toJSON());
@@ -77,7 +77,7 @@ var AppView = Backbone.View.extend({
     var _this = this;
 
     this.$el.html(html);
-    this.collection.sortBy('').forEach(function(blog) {
+    this.collection.forEach(function(blog) {
       var childView = new BlogView({model: blog});
 
       _this.$el.find('.blog-list')
