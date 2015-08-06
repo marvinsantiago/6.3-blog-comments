@@ -33,7 +33,7 @@ var AppView = Backbone.View.extend({
 
   events: {
     'click .addcomment': 'addComment',  // When addcomment button is clicked, form section appears
-    'click .submit': 'submit',
+    'submit form': 'submit',
   },
 
   render: function() {
@@ -58,7 +58,9 @@ var AppView = Backbone.View.extend({
   },
 
   // Event
-  submit: function() {
+  submit: function(ev) {
+    ev.preventDefault();
+
     var email = this.$el.find('input.email').val();
     var comment = this.$el.find('textarea.comment').val();
     this.collection.create({email: email, comment: comment});

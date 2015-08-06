@@ -6,8 +6,8 @@
 var Blog = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
-    email: null,
-    comment: null,
+    email: '',
+    comment: '',
   },
 });
 
