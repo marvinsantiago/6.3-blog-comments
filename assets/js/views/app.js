@@ -7,29 +7,14 @@ var BlogView = Backbone.View.extend({
   },
 
   events: {
-    'change .toggle': 'toggleDone',
-    'click .destroy': 'burnItWithFire',
+
   },
 
   render: function() {
     var html = this.template(this.model.toJSON());
     this.$el.html(html);
-    this.$el.toggleClass('completed', this.model.get('done'));
 
     return this;
-  },
-
-  toggleDone: function() {
-    this.model.set('done', !this.model.get('done'));
-    this.model.save();
-  },
-
-  burnItWithFire: function() {
-    var _this = this;
-    this.$el.slideUp(function() {
-      _this.model.destroy();
-      _this.remove();
-    });
   },
 
 });
@@ -47,7 +32,8 @@ var AppView = Backbone.View.extend({
   },
 
   events: {
-    'submit form': 'addBlog',
+    'click .addcomment': 'addComment',  // When addcomment button is clicked, form section appears
+    'click .submit': 'submit',
   },
 
   render: function() {
@@ -55,7 +41,7 @@ var AppView = Backbone.View.extend({
     var _this = this;
 
     this.$el.html(html);
-    this.collection.sortBy('done').forEach(function(blog) {
+    this.collection.sortBy('').forEach(function(blog) {
       var childView = new BlogView({model: blog});
 
       _this.$el.find('.blog-list')
@@ -63,17 +49,19 @@ var AppView = Backbone.View.extend({
     });
 
     console.info('render');
-
-    this.$('.new-blog').focus();
     return this;
   },
 
-  addBlog: function(ev) {
-    ev.preventDefault();
+  // Event
+  addComment: function() {
+    this.$el.find('.new-blog').slideDown();
+  },
 
-    var title = this.$el.find('input').val();
-    this.collection.create({title: title});
-    this.$el.find('input').val('');
+  // Event
+  submit: function() {
+    var email = this.$el.find('input.email').val();
+    var comment = this.$el.find('textarea.comment').val();
+    this.collection.create({email: email, comment: comment});
   },
 
 });
