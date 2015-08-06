@@ -24,7 +24,7 @@ var appJs = concat(assetsWithTemplates, {
     'templates/**/*.js',
     'js/blog.js',
     'js/views/app.js',
-    'js/models/blog-c.js',
+    'js/models/blog-mvc.js',
     /* Your app files here */
   ],
   outputFile: 'app.js',
