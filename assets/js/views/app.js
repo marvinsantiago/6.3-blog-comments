@@ -60,7 +60,7 @@ var AppView = Backbone.View.extend({
   // Event
   submit: function() {
     var email = this.$el.find('input.email').val();
-    var comment = this.$el.find('input.comment').val();
+    var comment = this.$el.find('textarea.comment').val();
     this.collection.create({email: email, comment: comment});
   },
 

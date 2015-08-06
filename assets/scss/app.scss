@@ -3,10 +3,24 @@
 @import 'bourbon';
 @import 'neat';
 @import 'border-box';
-
+body {
+    font-family: Helvetica, sans-serif;
+}
 #target {
     @include outer-container;
 }
 .new-blog {
     display: none;
+    p {
+        padding: 5px;
+    }
+}
+
+.addcomment {
+    @include button;
+    font-size: 0.7em;
+}
+.submit {
+    @include button;
+    font-size: 0.7em;
 }
