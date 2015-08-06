@@ -1,7 +1,7 @@
 var AppTemplates = {};
 
 AppTemplates['app'] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<section class=\"blogapp\">\n    <header class=\"header\">\n        <button class=\"addcomment\">Add a comment</button>\n        <form class=\"new-blog\">\n        <p>Email:</p>\n        <input type=\"text\" class=\"email\">\n        <p>Comment:</p>\n        <textarea name=\"text\" class=\"comment\" cols=\"30\" rows=\"10\"></textarea>\n        <button class=\"submit\">Submit</button>\n        </form>\n    </header>\n    <section class=\"main\">\n        <ul class=\"blog-list\">\n        </ul>\n    </section>\n</section>\n";
+    return "<section class=\"blogapp\">\n    <header class=\"header\">\n        <button class=\"addcomment\">Add a comment</button>\n        <form class=\"new-blog\">\n            <label>Email:</label>\n            <input type=\"text\" class=\"email\">\n\n            <label>Comment:</label>\n            <textarea name=\"text\" class=\"comment\" cols=\"30\" rows=\"10\"></textarea>\n\n            <button class=\"submit\">Submit</button>\n        </form>\n    </header>\n    <section class=\"main\">\n        <ul class=\"blog-list\">\n        </ul>\n    </section>\n</section>\n";
 },"useData":true});
 AppTemplates['blog'] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
@@ -20,8 +20,8 @@ AppTemplates['blog'] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"ma
 var Blog = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
-    email: null,
-    comment: null,
+    email: '',
+    comment: '',
   },
 });
 
@@ -69,7 +69,7 @@ var AppView = Backbone.View.extend({
 
   events: {
     'click .addcomment': 'addComment',  // When addcomment button is clicked, form section appears
-    'click .submit': 'submit',
+    'submit form': 'submit',
   },
 
   render: function() {
@@ -94,7 +94,9 @@ var AppView = Backbone.View.extend({
   },
 
   // Event
-  submit: function() {
+  submit: function(ev) {
+    ev.preventDefault();
+
     var email = this.$el.find('input.email').val();
     var comment = this.$el.find('textarea.comment').val();
     this.collection.create({email: email, comment: comment});
