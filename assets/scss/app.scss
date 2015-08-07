@@ -7,20 +7,44 @@ body {
     font-family: Helvetica, sans-serif;
 }
 #target {
-    @include outer-container;
+    @include outer-container(300px);
 }
-.new-blog {
-    display: none;
-    p {
-        padding: 5px;
+.blogapp {
+    border: 2px solid #e0dede;
+    padding: 10px;
+}
+.header {
+    @include span-columns(12);
+    button {
+        @include span-columns(12);
     }
 }
-
+.new-blog, {
+    display: none;
+}
+.new-blog label, button, input, textarea {
+    @include span-columns(12);
+    margin-bottom: 0.5em;
+    color: #7f7e7e;
+}
 .addcomment {
     @include button;
     font-size: 0.7em;
 }
 .submit {
     @include button;
+    padding: 5px 0;
     font-size: 0.7em;
 }
+.email, .comment {
+    @include span-columns(12);
+    padding: 3px 0;
+}
+.blog-list li {
+    border-bottom: 2px solid #b2b0b0;
+    padding: 10px 0;
+    color: #b2b0b0;
+    line-height: 20px;
+}
+
+
